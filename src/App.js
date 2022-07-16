@@ -1,14 +1,28 @@
-import {Switch, Route} from 'react-router-dom'
-import './App.css'
-import Home from './components/Home'
-import TeamMatches from './components/TeamMatches'
-import NotFound from './components/NotFound'
+import React, { Component } from 'react'
+import Teams from './components/Home/Teams'
+import Navbar from './components/NavBar/Navbar'
+import Players from './components/PlayerPage/Players'
+import About from './components/About/About'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Schedule from './components/Schedule/Schedule'
 
-const App = () => (
-  <Switch>
-    <Route exact path="/" component={Home} />
-    <Route path="/team-matches/:id" component={TeamMatches} />
-    <Route component={NotFound} />
-  </Switch>
-)
+export class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+      
+        <Navbar/>
+       <Routes>
+        <Route exact path='/' element={<Teams/>}/>
+        <Route  path='/players/:team' element={<Players/>}/>
+        <Route exact path='/about' element={<About/>}/>
+        <Route exact path='/schedule' element={<Schedule/>}/>
+       
+       </Routes>
+      </BrowserRouter>
+      
+    )
+  }
+}
+
 export default App
